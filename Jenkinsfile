@@ -13,23 +13,23 @@ pipeline {
         }
         stage('Init'){
             steps{
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('Build'){
             steps {
-                sh 'docker build -t epsdevops/reactapp:$BUILD_ID .'
+                bat 'docker build -t epsdevops/reactapp:$BUILD_ID .'
             }
         }
         stage('Deliver'){
             steps {
-                sh 'docker push epsdevops/reactapp:$BUILD_ID'
+                bat 'docker pubat epsdevops/reactapp:$BUILD_ID'
             }
         }
         stage('Cleanup'){
             steps {
-                sh 'docker rmi epsdevops/reactapp:$BUILD_ID'
-                sh 'docker logout'
+                bat 'docker rmi epsdevops/reactapp:$BUILD_ID'
+                bat 'docker logout'
             }
         }
     }
