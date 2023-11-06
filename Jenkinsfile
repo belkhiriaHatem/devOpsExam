@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Deliver'){
             steps {
-                bat 'docker pubat epsdevops/reactapp:$BUILD_ID'
+                bat 'docker push epsdevops/reactapp:$BUILD_ID'
             }
         }
         stage('Cleanup'){
